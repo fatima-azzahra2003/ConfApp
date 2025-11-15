@@ -1,0 +1,7 @@
+/* Pour que Tailwind fonctionne, nous devons importer ses classes de base.
+  (Bien que le script CDN s'en charge, c'est une bonne pratique
+  pour une configuration de build locale)
+*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
