@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:24.0.5
+    container_name: keycloak-server
+
+    # Arguments pour démarrer Keycloak en mode "dev" (plus simple)
+    command:
+      - start-dev
+
+    # Variables d'environnement pour créer l'utilisateur admin
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+
+    # Mappage des ports:
+    # Port 8180 de votre PC -> Port 8080 du conteneur
+    # (On utilise 8180 pour ne pas entrer en conflit avec vos services)
+    ports:
+      - "8180:8080"
