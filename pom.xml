@@ -14,6 +14,7 @@
         <module>config-service</module>
         <module>gateway-service</module>
         <module>keynote-service</module>
+        <module>conference-service</module>
         <!-- Vous ajouterez config-service, gateway-service, etc. ici plus tard -->
     </modules>
 
