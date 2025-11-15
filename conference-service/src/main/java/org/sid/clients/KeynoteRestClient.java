@@ -22,17 +22,21 @@ public interface KeynoteRestClient {
      * @CircuitBreaker : C'est ici qu'on active Resilience4J.
      * Si le 'keynote-service' est en panne ou met trop de temps à répondre,
      * au lieu de planter, il appellera la méthode de 'fallback'.
+     *
+     * CORRECTION: Ajout de ("id") à @PathVariable
      */
     @GetMapping("/api/v1/keynotes/{id}")
     @CircuitBreaker(name = "keynoteService", fallbackMethod = "getDefaultKeynote")
-    KeynoteDTO findKeynoteById(@PathVariable Long id);
+    KeynoteDTO findKeynoteById(@PathVariable("id") Long id);
 
     /**
      * Méthode de Fallback (secours) pour le Circuit Breaker.
      * Appelée si 'findKeynoteById' échoue.
      * Elle DOIT avoir la même signature (paramètres + type de retour).
+     *
+     * CORRECTION: Ajout de ("id") à @PathVariable
      */
-    default KeynoteDTO getDefaultKeynote(Long id, Throwable exception) {
+    default KeynoteDTO getDefaultKeynote(@PathVariable("id") Long id, Throwable exception) {
         // En cas d'erreur, on retourne un Keynote "par défaut"
         return KeynoteDTO.builder()
                 .id(id)

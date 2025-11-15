@@ -55,6 +55,15 @@
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
 
+        <!--
+          DÉPENDANCE AJOUTÉE : Resilience4J (Circuit Breaker)
+          C'est ce qui corrige la ligne rouge.
+        -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
+        </dependency>
+
         <!-- Outils de DTO/Mapping (Lombok + MapStruct) -->
         <dependency>
             <groupId>org.projectlombok</groupId>
