@@ -46,19 +46,13 @@
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
         </dependency>
 
-        <!--
-          NOUVELLE DÉPENDANCE : OpenFeign
-          Pour la communication REST déclarative (appeler le keynote-service)
-        -->
+        <!-- OpenFeign (pour appeler keynote-service) -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
 
-        <!--
-          DÉPENDANCE AJOUTÉE : Resilience4J (Circuit Breaker)
-          C'est ce qui corrige la ligne rouge.
-        -->
+        <!-- Resilience4J (Circuit Breaker pour OpenFeign) -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
@@ -81,6 +75,16 @@
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
             <version>2.5.0</version>
+        </dependency>
+
+        <!-- Dépendances de Sécurité (Keycloak) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
         </dependency>
 
         <dependency>

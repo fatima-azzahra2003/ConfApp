@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.0.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.sid</groupId>
@@ -12,10 +12,10 @@
 
     <artifactId>gateway-service</artifactId>
     <name>Gateway Service</name>
-    <description>Point d'entrée de l'application (Routage)</description>
+    <description>Point d'entrée (Gateway) de l'application</description>
 
     <dependencies>
-        <!-- Dépendance principale pour Spring Cloud Gateway -->
+        <!-- Dépendance pour Spring Cloud Gateway -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
@@ -27,22 +27,32 @@
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
 
-        <!--
-           Dépendance pour se connecter au Config Service.
-           C'est elle qui active la lecture du 'bootstrap.properties'
-        -->
+        <!-- Dépendance pour lire 'bootstrap.properties' -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
 
-        <!--
-           Dépendance pour Resilience4J (Circuit Breaker).
-           Demandé dans l'énoncé.
-        -->
+        <!-- Dépendance CRUCIALE pour Spring Boot 3+ (corrige "No spring.config.import") -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+
+        <!-- Dépendance pour Resilience4J (Circuit Breaker) -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
+        </dependency>
+
+        <!-- Dépendances de Sécurité (Keycloak) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
         </dependency>
 
         <dependency>
@@ -54,6 +64,7 @@
 
     <build>
         <plugins>
+            <!-- Plugin CRUCIAL (corrige "no main manifest attribute") -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
